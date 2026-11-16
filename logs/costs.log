@@ -1,0 +1,38 @@
+liboqs-python faulthandler is disabled
+=== MIGRATION-COST MEASUREMENT ===
+started_utc: 2026-11-16T14:34:44.600800+00:00
+liboqs_version: 0.16.0
+python: 3.12.3
+[PASS] size ML-DSA-44 pk=1312 sk=2560 sig=2420 (expected 1312/2560/2420, FIPS 204 Table 2)
+timing ML-DSA-44: sign n=50 median=0.0001 s min=0.0000 s max=0.0005 s; verify median=0.0000 s min=0.0000 s max=0.0001 s
+[PASS] size ML-DSA-65 pk=1952 sk=4032 sig=3309 (expected 1952/4032/3309, FIPS 204 Table 2)
+timing ML-DSA-65: sign n=50 median=0.0001 s min=0.0001 s max=0.0004 s; verify median=0.0001 s min=0.0001 s max=0.0001 s
+[PASS] size ML-DSA-87 pk=2592 sk=4896 sig=4627 (expected 2592/4896/4627, FIPS 204 Table 2)
+timing ML-DSA-87: sign n=50 median=0.0002 s min=0.0001 s max=0.0003 s; verify median=0.0001 s min=0.0001 s max=0.0002 s
+[PASS] size SLH-DSA-SHA2-128s pk=32 sk=64 sig=7856 (expected 32/64/7856, FIPS 205 Table 2)
+timing SLH-DSA-SHA2-128s: sign n=20 median=0.7189 s min=0.6909 s max=0.8158 s; verify median=0.0007 s min=0.0007 s max=0.0010 s
+[PASS] size SLH-DSA-SHA2-192s pk=48 sk=96 sig=16224 (expected 48/96/16224, FIPS 205 Table 2)
+timing SLH-DSA-SHA2-192s: sign n=5 median=1.3152 s min=1.2908 s max=1.3816 s; verify median=0.0011 s min=0.0011 s max=0.0015 s
+[PASS] size SLH-DSA-SHA2-256s pk=64 sk=128 sig=29792 (expected 64/128/29792, FIPS 205 Table 2)
+timing SLH-DSA-SHA2-256s: sign n=5 median=1.1642 s min=1.1596 s max=1.2350 s; verify median=0.0015 s min=0.0015 s max=0.0016 s
+[PASS] size ML-KEM-512 pk=800 sk=1632 ct=768 ss=32 (expected 800/1632/768/32, FIPS 203 Table 3)
+timing ML-KEM-512: encap n=50 median=0.000014 s; decap median=0.000015 s
+[PASS] size ML-KEM-768 pk=1184 sk=2400 ct=1088 ss=32 (expected 1184/2400/1088/32, FIPS 203 Table 3)
+timing ML-KEM-768: encap n=50 median=0.000020 s; decap median=0.000023 s
+[PASS] size ML-KEM-1024 pk=1568 sk=3168 ct=1568 ss=32 (expected 1568/3168/1568/32, FIPS 203 Table 3)
+timing ML-KEM-1024: encap n=50 median=0.000025 s; decap median=0.000029 s
+--- CROSS-IMPLEMENTATION CHECKS ---
+[PASS] ML-DSA-65 ref-driver signature verifies under liboqs: True
+[PASS] ML-DSA-65 liboqs signature verifies under ref driver: True
+ref SLH-DSA-SHA2-192s sizes: pk=48 sk=96 sig=16224 (FIPS 205 Table 2: 48/96/16224)
+[INFO] SLH-DSA-SHA2-192s ref-driver signature verifies under liboqs: False
+cross-check SLH-DSA-192s ref->liboqs: INVALID (expected divergence: round-3 reference vs FIPS 205; see note above; drill self-verification unaffected)
+--- LEDGER-GROWTH MODEL (quorum=4 signatures/checkpoint) ---
+bytes per quorum-signed checkpoint: old(ML-DSA-65)=13236 dual=78132 new(SLH-DSA-192s)=64896
+checkpoints=10000: old=132.36 MB dual=781.32 MB new=648.96 MB delta_new_minus_old=+516.60 MB
+checkpoints=100000: old=1323.60 MB dual=7813.20 MB new=6489.60 MB delta_new_minus_old=+5166.00 MB
+checkpoints=1000000: old=13236.00 MB dual=78132.00 MB new=64896.00 MB delta_new_minus_old=+51660.00 MB
+validator key storage (pk+sk, bytes): ML-DSA-65=5984 SLH-DSA-192s=144 (both keys during dual-signing=6128)
+RESULTS_JSON: {"kems": {"ML-KEM-1024": {"ct": 1568, "decap_s_median": 2.8542500103867496e-05, "encap_s_median": 2.4852500018823775e-05, "n": 50, "pk": 1568, "sk": 3168, "ss": 32}, "ML-KEM-512": {"ct": 768, "decap_s_median": 1.5267999970092205e-05, "encap_s_median": 1.446150008632685e-05, "n": 50, "pk": 800, "sk": 1632, "ss": 32}, "ML-KEM-768": {"ct": 1088, "decap_s_median": 2.2513999738293933e-05, "encap_s_median": 2.043999984380207e-05, "n": 50, "pk": 1184, "sk": 2400, "ss": 32}}, "ledger_growth": {"bytes_per_checkpoint": {"dual": 78132, "new": 64896, "old": 13236}, "quorum": 4}, "signatures": {"ML-DSA-44": {"n": 50, "pk": 1312, "sig": 2420, "sign_s_median": 6.55935002669139e-05, "sk": 2560, "verify_s_median": 3.3525500157338683e-05}, "ML-DSA-65": {"n": 50, "pk": 1952, "sig": 3309, "sign_s_median": 0.00014063550020182447, "sk": 4032, "verify_s_median": 5.1637000069604255e-05}, "ML-DSA-87": {"n": 50, "pk": 2592, "sig": 4627, "sign_s_median": 0.00015069599976413883, "sk": 4896, "verify_s_median": 7.398599996122357e-05}, "SLH-DSA-SHA2-128s": {"n": 20, "pk": 32, "sig": 7856, "sign_s_median": 0.7189485219998915, "sk": 64, "verify_s_median": 0.0007440404997396399}, "SLH-DSA-SHA2-192s": {"n": 5, "pk": 48, "sig": 16224, "sign_s_median": 1.315190865999739, "sk": 96, "verify_s_median": 0.0011052579998249712}, "SLH-DSA-SHA2-256s": {"n": 5, "pk": 64, "sig": 29792, "sign_s_median": 1.1642145320001873, "sk": 128, "verify_s_median": 0.0015413920000355574}}}
+failures: 0 []
+=== COST MEASUREMENT: ALL SIZE ASSERTIONS PASSED ===

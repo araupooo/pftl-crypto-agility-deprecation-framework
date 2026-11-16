@@ -1,0 +1,111 @@
+=== PQC ALGORITHM-DEPRECATION DRILL -- run 1 ===
+started_utc: 2026-11-16T14:48:03.093795+00:00
+deployed_algorithm: ML-DSA-65 (compromised in this drill)
+replacement_algorithm: SLH-DSA-SHA2-192s
+validators: 5, quorum: 4 of 5 (80%)
+drivers: bin/ref_mldsa65_driver ; bin/ref_slhdsa192_driver
+[PASS] key-size VAL-01 ML-DSA-65 pk=1952 sk=4032
+[PASS] key-size VAL-02 ML-DSA-65 pk=1952 sk=4032
+[PASS] key-size VAL-03 ML-DSA-65 pk=1952 sk=4032
+[PASS] key-size VAL-04 ML-DSA-65 pk=1952 sk=4032
+[PASS] key-size VAL-05 ML-DSA-65 pk=1952 sk=4032
+mldsa65 keypair: 5 keys, median 0.0027 s
+--- Stage 0 GENESIS ---
+[PASS] sig-size h0 VAL-01 ML-DSA-65 len=3309
+[PASS] sig-size h0 VAL-02 ML-DSA-65 len=3309
+[PASS] sig-size h0 VAL-03 ML-DSA-65 len=3309
+[PASS] sig-size h0 VAL-04 ML-DSA-65 len=3309
+[PASS] genesis quorum signatures=4 expected=4
+[PASS] verify h0 VAL-01 ML-DSA-65
+[PASS] verify h0 VAL-02 ML-DSA-65
+[PASS] verify h0 VAL-03 ML-DSA-65
+[PASS] verify h0 VAL-04 ML-DSA-65
+state_hash after Stage 0: 1c49040b9e8b1cea7055638da5a93028ae517d777497fc7ca9202d50a0768523
+--- Stage 1 ANNOUNCE ---
+announcement_sha256: 28c1b55d990158e2ec561a70ea49d48908b8b433d1ddb6a848e4dd6d1e32137d
+[PASS] announcement recorded, ML-DSA-65 status DEPRECATED
+state_hash after Stage 1: 498226651977ace93962035c13d1916f7a0b954fda41bdb74a51aa9429e30b04
+[PASS] state hash changed after announcement
+--- Stage 2 DUAL-SIGNING ---
+[PASS] key-size VAL-01 SLH-DSA-SHA2-192s pk=48 sk=96
+[PASS] key-size VAL-02 SLH-DSA-SHA2-192s pk=48 sk=96
+[PASS] key-size VAL-03 SLH-DSA-SHA2-192s pk=48 sk=96
+[PASS] key-size VAL-04 SLH-DSA-SHA2-192s pk=48 sk=96
+[PASS] key-size VAL-05 SLH-DSA-SHA2-192s pk=48 sk=96
+[PASS] sig-size h1 VAL-01 ML-DSA-65 len=3309
+[PASS] sig-size h1 VAL-01 SLH-DSA-SHA2-192s len=16224
+[PASS] sig-size h1 VAL-02 ML-DSA-65 len=3309
+[PASS] sig-size h1 VAL-02 SLH-DSA-SHA2-192s len=16224
+[PASS] sig-size h1 VAL-03 ML-DSA-65 len=3309
+[PASS] sig-size h1 VAL-03 SLH-DSA-SHA2-192s len=16224
+[PASS] sig-size h1 VAL-04 ML-DSA-65 len=3309
+[PASS] sig-size h1 VAL-04 SLH-DSA-SHA2-192s len=16224
+[PASS] dual-signing quorum signatures=8 expected=8
+[PASS] verify h1 VAL-01 ML-DSA-65
+[PASS] verify h1 VAL-01 SLH-DSA-SHA2-192s
+[PASS] verify h1 VAL-02 ML-DSA-65
+[PASS] verify h1 VAL-02 SLH-DSA-SHA2-192s
+[PASS] verify h1 VAL-03 ML-DSA-65
+[PASS] verify h1 VAL-03 SLH-DSA-SHA2-192s
+[PASS] verify h1 VAL-04 ML-DSA-65
+[PASS] verify h1 VAL-04 SLH-DSA-SHA2-192s
+[PASS] tampered ML-DSA-65 signature is INVALID
+state_hash after Stage 2: 4bf2900f59a15c3182c6bc8490836f440611d61dd19482cc1d3a4c53ec2c8919
+[PASS] state hash changed after dual-signing
+--- Stage 3 CUTOVER ---
+[PASS] sig-size h2 VAL-01 SLH-DSA-SHA2-192s len=16224
+[PASS] sig-size h2 VAL-02 SLH-DSA-SHA2-192s len=16224
+[PASS] sig-size h2 VAL-03 SLH-DSA-SHA2-192s len=16224
+[PASS] sig-size h2 VAL-04 SLH-DSA-SHA2-192s len=16224
+[PASS] cutover quorum signatures=4 expected=4
+[PASS] verify h2 VAL-01 SLH-DSA-SHA2-192s
+[PASS] verify h2 VAL-02 SLH-DSA-SHA2-192s
+[PASS] verify h2 VAL-03 SLH-DSA-SHA2-192s
+[PASS] verify h2 VAL-04 SLH-DSA-SHA2-192s
+state_hash after Stage 3: 029481d7ef2cb4a50cc7d1b557f3caebfe4d9b4150856bbecf242d91e6a4b0a5
+[PASS] state hash changed after cutover
+--- Stage 4 DEPRECATION ---
+[PASS] verify h0 VAL-01 ML-DSA-65
+[PASS] verify h0 VAL-02 ML-DSA-65
+[PASS] verify h0 VAL-03 ML-DSA-65
+[PASS] verify h0 VAL-04 ML-DSA-65
+[PASS] legacy-use: genesis ML-DSA-65 signatures still VALID
+post-cutover ML-DSA-65 signature: crypto_verify=True policy_accept=False
+[PASS] policy rejects NEW ML-DSA-65 signature after retirement
+replay attempt: checkpoint h1 presented as h2: height_match=False prev_hash_match=False
+[PASS] rollback/replay of checkpoint h1 rejected
+[PASS] forked checkpoint with wrong prev_state_hash rejected
+[PASS] checkpoint epochs strictly increasing [0, 1, 2]
+state_hash after Stage 4: 62988121307bf6846a726d59acb3e140513dd38e1f9aec9a0d749cb413501b48
+[PASS] state hash changed after deprecation
+--- FINAL VERIFICATION ---
+[PASS] verify h0 VAL-01 ML-DSA-65
+[PASS] verify h0 VAL-02 ML-DSA-65
+[PASS] verify h0 VAL-03 ML-DSA-65
+[PASS] verify h0 VAL-04 ML-DSA-65
+[PASS] verify h1 VAL-01 ML-DSA-65
+[PASS] verify h1 VAL-01 SLH-DSA-SHA2-192s
+[PASS] verify h1 VAL-02 ML-DSA-65
+[PASS] verify h1 VAL-02 SLH-DSA-SHA2-192s
+[PASS] verify h1 VAL-03 ML-DSA-65
+[PASS] verify h1 VAL-03 SLH-DSA-SHA2-192s
+[PASS] verify h1 VAL-04 ML-DSA-65
+[PASS] verify h1 VAL-04 SLH-DSA-SHA2-192s
+[PASS] verify h2 VAL-01 SLH-DSA-SHA2-192s
+[PASS] verify h2 VAL-02 SLH-DSA-SHA2-192s
+[PASS] verify h2 VAL-03 SLH-DSA-SHA2-192s
+[PASS] verify h2 VAL-04 SLH-DSA-SHA2-192s
+final_state_hash: 62988121307bf6846a726d59acb3e140513dd38e1f9aec9a0d749cb413501b48
+[PASS] final state hash is a full 64-hex SHA-256
+[PASS] final state has 3 checkpoints
+[PASS] final state has 5 validators
+total signatures verified across all checkpoints: 16
+timing mldsa65_keypair_s: n=5 median=0.0027 s min=0.0022 s max=0.0093 s
+timing sign_ML-DSA-65_s: n=8 median=0.0027 s min=0.0019 s max=0.0037 s
+timing sign_SLH-DSA-SHA2-192s_s: n=8 median=4.0598 s min=3.9759 s max=4.2622 s
+timing slhdsa192_keypair_s: n=5 median=0.4605 s min=0.4583 s max=0.4959 s
+timing verify_ML-DSA-65_s: n=20 median=0.0015 s min=0.0011 s max=0.0018 s
+timing verify_SLH-DSA-SHA2-192s_s: n=16 median=0.0050 s min=0.0045 s max=0.0212 s
+checks: 79 passed, 0 failed, 79 total
+INVARIANTS: {"checkpoints": 3, "checks_failed": 0, "checks_passed": 79, "checks_total": 79, "new_algorithm": "SLH-DSA-SHA2-192s", "new_key_sizes": {"pk": 48, "sig": 16224, "sk": 96}, "old_algorithm": "ML-DSA-65", "old_key_sizes": {"pk": 1952, "sig": 3309, "sk": 4032}, "quorum": 4, "run": "1", "signatures_per_checkpoint": [4, 8, 4], "stages": ["GENESIS", "ANNOUNCE", "DUAL-SIGNING", "CUTOVER", "DEPRECATION"], "total_signatures": 16, "validators": 5}
+=== DRILL run 1: ALL CHECKS PASSED ===

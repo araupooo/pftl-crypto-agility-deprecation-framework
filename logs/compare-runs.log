@@ -1,0 +1,15 @@
+invariants identical across runs 1-5 (excluding run number): True
+shared invariants: {"checkpoints": 3, "checks_failed": 0, "checks_passed": 79, "checks_total": 79, "new_algorithm": "SLH-DSA-SHA2-192s", "new_key_sizes": {"pk": 48, "sig": 16224, "sk": 96}, "old_algorithm": "ML-DSA-65", "old_key_sizes": {"pk": 1952, "sig": 3309, "sk": 4032}, "quorum": 4, "signatures_per_checkpoint": [4, 8, 4], "stages": ["GENESIS", "ANNOUNCE", "DUAL-SIGNING", "CUTOVER", "DEPRECATION"], "total_signatures": 16, "validators": 5}
+run 1: log ALL CHECKS PASSED=True, checkpoints=3, validators=5
+run 2: log ALL CHECKS PASSED=True, checkpoints=3, validators=5
+run 3: log ALL CHECKS PASSED=True, checkpoints=3, validators=5
+run 4: log ALL CHECKS PASSED=True, checkpoints=3, validators=5
+run 5: log ALL CHECKS PASSED=True, checkpoints=3, validators=5
+recomputed final-state hashes (full SHA-256, from stored JSON):
+  run 1: 62988121307bf6846a726d59acb3e140513dd38e1f9aec9a0d749cb413501b48
+  run 2: 225eb0d35eae217d209b4d0c5f66ecbba62a0a6efe9862fe6b2b76e9db693aa2
+  run 3: 9b5af012657c95d30af10571ce2418773b10018aa2e41c28e6021f50a733f15d
+  run 4: c22646abdda348905461212b9f0e92de5bc8d37409a9d7ace0ba78f4cf55c285
+  run 5: 60dceb8c901eed855aac53b9781724651628a77a8ec5a99d8c9bb7ba50335b27
+all 5 final-state hashes distinct (fresh random keys): True
+DETERMINISM VERDICT: PASS -- identical outcomes, distinct random state per run
